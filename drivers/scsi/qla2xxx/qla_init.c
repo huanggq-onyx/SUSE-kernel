@@ -960,7 +960,8 @@ int qla24xx_fcport_handle_login(struct scsi_qla_host *vha, fc_port_t *fcport)
 
 	switch (fcport->disc_state) {
 	case DSC_DELETED:
-		if (fcport->loop_id == FC_NO_LOOP_ID) {
+		if (fcport->loop_id == FC_NO_LOOP_ID &&
+		    ha->operating_mode != P2P) {
 			ql_dbg(ql_dbg_disc, vha, 0x20bd,
 			    "%s %d %8phC post gnl\n",
 			    __func__, __LINE__, fcport->port_name);
